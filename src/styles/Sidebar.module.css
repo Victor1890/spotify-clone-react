@@ -1,0 +1,45 @@
+.Sidebar{
+    height: 100vh;
+    flex: 0.2;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 230px;
+    height: 100vh;
+    background-color: #040404;
+}
+.slidebar__logo{
+    margin-right: auto;
+    height: 70px;
+    padding: 10px;
+}
+.sidebarOption{
+    display: flex;
+    align-items: center;
+    color: grey;
+    height: 40px;
+    cursor: pointer;
+    transition: 200ms color ease-in;
+}
+.Sidebar>hr{
+    border: 1px solid #282828;
+    width: 90%;
+    margin: 10px auto;
+}
+.sidebarOption:hover{
+    color: white;
+}
+.sidebarOption__icon{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.slidebar__title{
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 12px;
+}
+.sidebarOption__icon > p{
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 14px;
+}
