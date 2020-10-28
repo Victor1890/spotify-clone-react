@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { DataLayer } from "./redux/DataLayer";
-import reduce, { initialState } from "./redux/Reduce";
+import reducer, { initialState } from "./redux/Reduce";
 
 ReactDOM.render(
   <React.StrictMode>
-    <DataLayer initialState={initialState} reduce={reduce}>
+    <DataLayer initialState={initialState} reducer={reducer}>
       <App />
     </DataLayer>
   </React.StrictMode>,

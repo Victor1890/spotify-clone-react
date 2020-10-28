@@ -7,11 +7,11 @@ import { Avatar } from "@material-ui/core";
 import { useDataLayerValue } from "../redux/DataLayer";
 
 const Header = () => {
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ user }] = useDataLayerValue();
 
   return (
     <Fragment>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <div className={styles.header__left}>
           <Search />
           <input placeholder="Search for Artists, Songs or Album" type="text" />
@@ -20,7 +20,7 @@ const Header = () => {
           <Avatar src={user?.images[0].url} alt={user?.display_name} />
           <h4>{user?.display_name}</h4>
         </div>
-      </div>
+      </header>
     </Fragment>
   );
 };

@@ -7,11 +7,11 @@ import { useDataLayerValue } from "../redux/DataLayer";
 import { Home, Search, LibraryMusic } from "@material-ui/icons";
 
 const Sidebar = () => {
-  const [{ playlists }, dispatch] = useDataLayerValue();
+  const [{ playlists }] = useDataLayerValue();
 
   return (
     <Fragment>
-      <div className={styles.Sidebar}>
+      <aside className={styles.Sidebar}>
         <img
           className={styles.slidebar__logo}
           src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
@@ -27,7 +27,7 @@ const Sidebar = () => {
         {playlists?.items?.map((playlists) => (
           <SlidebarOptions key title={playlists.name} />
         ))}
-      </div>
+      </aside>
     </Fragment>
   );
 };

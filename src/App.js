@@ -1,33 +1,35 @@
-import { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { getTokenFromUrl } from "./api/spotify";
 import Login from "./components/Login";
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./components/Player";
 import { useDataLayerValue } from "./redux/DataLayer";
-import "./styles/App.css";
 
 const spotify = new SpotifyWebApi();
 
 const App = () => {
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
     const hash = getTokenFromUrl();
     window.location.hash = "";
     const _token = hash.access_token;
+
     if (_token) {
+      spotify.setAccessToken(_token);
+
       dispatch({
         type: "SET_TOKEN",
         token: _token,
       });
 
-      spotify.setAccessToken(_token);
-
       spotify.getMe().then((user) => {
         dispatch({
           type: "SET_USER",
-          user: user,
+          user,
         });
+
+        console.log(user);
       });
 
       spotify.getUserPlaylists().then((playlists) => {
@@ -45,13 +47,24 @@ const App = () => {
       });
     });
 
-    console.log(user);
-  }, []);
+    spotify.getMyTopArtists().then((res) => {
+      dispatch({
+        type: "SET_TOP_ARTISTS",
+        top_artists: res,
+      });
+    });
+
+    dispatch({
+      type: "SET_SPOTIFY",
+      spotify: spotify,
+    });
+  }, [token, dispatch]);
 
   return (
-    <div className="App">
-      {token ? <Player spotify={spotify} /> : <Login />}
-    </div>
+    <Fragment>
+      {!token && <Login />}
+      {token && <Player spotify={spotify} />}
+    </Fragment>
   );
 };
 

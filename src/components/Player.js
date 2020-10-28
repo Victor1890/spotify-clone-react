@@ -7,13 +7,13 @@ import styles from "../styles/Player.module.css";
 const Player = ({ spotify }) => {
   return (
     <Fragment>
-      <div className={styles.Player}>
-        <div className={styles.Player_body}>
+      <main className={styles.Player}>
+        <div className={styles.Player__body}>
           <Sidebar />
           <Body spotify={spotify} />
         </div>
-        <Footer />
-      </div>
+        <Footer spotify={spotify} />
+      </main>
     </Fragment>
   );
 };
